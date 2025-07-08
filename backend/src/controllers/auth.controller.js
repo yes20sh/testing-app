@@ -1,10 +1,9 @@
-// server/src/controllers/auth.controller.js
 import Admin from '../models/Admin.js';
 import bcrypt from 'bcrypt';
 
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 10;
 
-
+// Login 
 export const login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -18,10 +17,8 @@ export const login = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-
     req.session.authenticated = true;
     req.session.adminId = admin._id;
-
     res.status(200).json({
       message: 'Login successful',
       id: admin._id,
@@ -34,18 +31,15 @@ export const login = async (req, res) => {
   }
 };
 
-
+// Register 
 export const register = async (req, res) => {
   const { fullname, username, password } = req.body;
-
   try {
     if (await Admin.exists({ username })) {
       return res.status(409).json({ message: 'Admin already exists' });
     }
-
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     const newAdmin = new Admin({ fullname, username, password: hashedPassword });
-
     await newAdmin.save();
     res.status(201).json({
       message: 'Admin created successfully',
@@ -57,7 +51,7 @@ export const register = async (req, res) => {
   }
 };
 
-
+// Logout 
 export const logout = (req, res) => {
   req.session.destroy(err => {
     if (err) {
@@ -68,7 +62,7 @@ export const logout = (req, res) => {
   });
 };
 
-
+// Check Auth 
 export const checkAuth = (req, res) => {
   if (req.session?.authenticated) {
     return res.status(200).json({ authenticated: true });
@@ -76,7 +70,7 @@ export const checkAuth = (req, res) => {
   res.status(401).json({ authenticated: false, message: 'Not logged in' });
 };
 
-
+// Get all user 
 export const getAllUsers = async (_req, res) => {
   try {
     const users = await Admin.find().select('-password');
@@ -87,7 +81,7 @@ export const getAllUsers = async (_req, res) => {
   }
 };
 
-
+// Delete 
 export const deleteUser = async (req, res) => {
   try {
     const deleted = await Admin.findByIdAndDelete(req.params.id);
@@ -101,30 +95,25 @@ export const deleteUser = async (req, res) => {
   }
 };
 
+// Update 
 export const updateUser = async (req, res) => {
   try {
     const { fullname, username, password } = req.body;
     const updates = {};
-
     if (fullname) updates.fullname = fullname;
-
     if (username) {
-  
       const duplicate = await Admin.findOne({ username, _id: { $ne: req.params.id } });
       if (duplicate) {
         return res.status(409).json({ message: 'Username already in use' });
       }
       updates.username = username;
     }
-
     if (password) {
       updates.password = await bcrypt.hash(password, SALT_ROUNDS);
     }
-
     if (!Object.keys(updates).length) {
       return res.status(400).json({ message: 'No fields provided to update' });
     }
-
     const updated = await Admin.findByIdAndUpdate(
       req.params.id,
       updates,
@@ -134,7 +123,6 @@ export const updateUser = async (req, res) => {
     if (!updated) {
       return res.status(404).json({ message: 'User not found' });
     }
-
     res.json({ message: 'User updated successfully', user: updated });
   } catch (err) {
     console.error('Update User Error:', err);

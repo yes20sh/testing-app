@@ -15,7 +15,7 @@ const Footer = () => (
           className="h-8 w-auto rounded-lg shadow-md border border-blue-100 bg-white"
           height={32}
           width={120}
-          src="https://storage.googleapis.com/a1aa/image/87e1261e-8630-4857-489e-8a5c8c6676d7.jpg"
+          src="../../public/logo.svg"
         />
       </div>
       {/* Right: Social Icons */}

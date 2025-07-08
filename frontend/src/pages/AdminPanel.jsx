@@ -65,7 +65,7 @@ const AdminLayout = () => {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <img
-              src="https://storage.googleapis.com/a1aa/image/87e1261e-8630-4857-489e-8a5c8c6676d7.jpg"
+              src="../../public/logo.svg"
               alt="Logo"
               className="h-8 w-auto rounded"
             />

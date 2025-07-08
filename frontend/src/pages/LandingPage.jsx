@@ -10,8 +10,6 @@ import NewsletterForm from "../components/forms/NewsletterForm";
 const LandingPage = () => (
   <div className="bg-white text-gray-900 font-[Poppins,sans-serif]">
     <Navbar />
-
-    {/* Hero Section */}
     <section
       className="relative max-w-7xl mx-auto px-6 mt-8 rounded-2xl overflow-hidden min-h-[440px] shadow-xl"
       aria-label="Hero Section"
@@ -49,17 +47,9 @@ const LandingPage = () => (
         </aside>
       </div>
     </section>
-
-    {/* Details Section */}
     <Details />
-
-    {/* Projects Section */}
     <ProjectsCarousel />
-
-    {/* Happy Clients Section */}
     <ClientCarousel />
-
-    {/* Promotional Section */}
     <section className="relative mt-14  overflow-hidden shadow-xl">
       <img
         alt="Modern living room interior with brown leather sofa, wooden coffee table, rattan chair, and large windows letting in natural light"
@@ -78,11 +68,7 @@ const LandingPage = () => (
         </button>
       </div>
     </section>
-
-    {/* Subscribe Section */}
     <NewsletterForm />
-
-    {/* Footer */}
     <Footer />
   </div>
 );

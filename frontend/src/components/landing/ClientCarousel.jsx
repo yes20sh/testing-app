@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ClientCard from './ClientCard';
-import axios from '../../api/axios'; // Make sure this points to your configured axios instance
+import axios from '../../api/axios';
 
 function getCardsPerView() {
   if (window.innerWidth >= 1024) return 4;
@@ -8,30 +8,26 @@ function getCardsPerView() {
   if (window.innerWidth >= 640) return 2;
   return 1;
 }
-
 const ClientCarousel = () => {
   const [clients, setClients] = useState([]);
   const [current, setCurrent] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(getCardsPerView());
-
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const res = await axios.get('/clients'); // GET /clients API
+        const res = await axios.get('/clients');
         setClients(res.data);
       } catch (err) {
         console.error('Failed to load clients:', err);
       }
     };
     fetchClients();
-
     const handleResize = () => setCardsPerView(getCardsPerView());
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const maxIndex = Math.max(0, clients.length - cardsPerView);
-
   const prev = () => setCurrent((c) => Math.max(0, c - 1));
   const next = () => setCurrent((c) => Math.min(maxIndex, c + 1));
 

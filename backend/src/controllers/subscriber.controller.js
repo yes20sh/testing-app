@@ -1,5 +1,6 @@
 import Subscriber from '../models/Subscriber.js';
 
+// Get 
 export const getAllSubscribers = async (_req, res) => {
   try {
     const subscribers = await Subscriber.find();
@@ -9,6 +10,7 @@ export const getAllSubscribers = async (_req, res) => {
   }
 };
 
+// Add 
 export const addSubscriber = async (req, res) => {
   const { email } = req.body;
   try {

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from '../../api/axios';  
 import { Link } from 'react-router-dom';
-        // ← your configured Axios base‑URL instance
 
-const NEWSLETTER_URL = '/subscribers';       // the router you showed is mounted at /api/subscribers
+const NEWSLETTER_URL = '/subscribers';       
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState('');
@@ -52,10 +51,6 @@ export default function NewsletterForm() {
     Admin
   </Link>
 </li>
-          {/* <li><a className="hover:underline hover:text-orange-200 transition" href="#">Services</a></li>
-          <li><a className="hover:underline hover:text-orange-200 transition" href="#">Projects</a></li>
-          <li><a className="hover:underline hover:text-orange-200 transition" href="#">Testimonials</a></li>
-          <li><a className="hover:underline hover:text-orange-200 transition" href="#">Connect</a></li> */}
         </ul>
 
         {/* Subscribe Form */}

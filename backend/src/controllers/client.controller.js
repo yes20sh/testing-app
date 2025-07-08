@@ -6,6 +6,7 @@ const parseBase64Image = (dataUrl = '') => {
   return { contentType: m[1], buffer: Buffer.from(m[2], 'base64') };
 };
 
+// All 
 export const getAllClients = async (_req, res) => {
   try {
     const docs = await Client.find().lean();
@@ -31,6 +32,7 @@ export const getAllClients = async (_req, res) => {
   }
 };
 
+// Add 
 export const addClient = async (req, res) => {
   try {
     const { name, designation, description, image } = req.body;
@@ -57,6 +59,7 @@ export const addClient = async (req, res) => {
   }
 };
 
+// Update 
 export const updateClient = async (req, res) => {
   try {
     const { id } = req.params;
@@ -83,6 +86,7 @@ export const updateClient = async (req, res) => {
   }
 };
 
+// Delete 
 export const deleteClient = async (req, res) => {
   try {
     const deleted = await Client.findByIdAndDelete(req.params.id);

@@ -73,9 +73,7 @@ const Projects = () => {
     setCroppedImage(null);
   };
 
-  /* ------------------------------------------------------------------ *
-   * CRUD actions
-   * ------------------------------------------------------------------ */
+  
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);

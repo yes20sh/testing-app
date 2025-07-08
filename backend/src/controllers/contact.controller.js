@@ -1,5 +1,6 @@
 import Contact from '../models/Contact.js';
 
+// All 
 export const getAllContacts = async (_req, res) => {
   try {
     const contacts = await Contact.find();
@@ -9,6 +10,8 @@ export const getAllContacts = async (_req, res) => {
   }
 };
 
+
+// Add 
 export const addContact = async (req, res) => {
   const { fullName, email, mobile, city } = req.body;
   try {

@@ -1,4 +1,3 @@
-// cropUtils.js
 export const getCroppedImg = (imageSrc, crop, aspect) => {
   return new Promise((resolve, reject) => {
     const image = new window.Image();
